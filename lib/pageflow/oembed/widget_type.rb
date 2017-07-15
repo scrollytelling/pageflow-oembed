@@ -13,7 +13,16 @@ module Pageflow
 
       def render(template, entry)
         template.render(
-          partial: "pageflow/oembed/widget.html.erb",
+          partial: "pageflow/oembed/widget",
+          locals: {
+            entry: entry
+          }
+        )
+      end
+
+      def render_head_fragment(template, entry)
+        template.render(
+          partial: 'pageflow/oembed/head',
           locals: {
             entry: entry
           }

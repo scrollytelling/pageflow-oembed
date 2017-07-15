@@ -4,14 +4,15 @@ require 'faraday_middleware'
 module Pageflow
   module Oembed
     class Fetcher
-      def initialize(url)
+      def initialize(url, params={})
         @url = url
+        @params = params
       end
 
-      attr_reader :url
+      attr_reader :url, :params
 
-      def self.fetch(url)
-        new(url).fetch
+      def self.fetch(url, params)
+        new(url, params).fetch
       end
 
       def fetch
@@ -23,7 +24,14 @@ module Pageflow
           conn.adapter Faraday.default_adapter
         end
 
-        response = connection.get "/oembed", {url: url}
+        response = connection.get "/oembed", {
+          url: url,
+          omit_script: true,
+          related: 'scrollytelling',
+          lang: params[:locale] || 'en',
+          theme: params[:theme] || 'dark',
+          dnt: 'true'
+        }
         response.body
       end
     end

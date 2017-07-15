@@ -44,13 +44,28 @@ if (!Array.prototype.find) {
   });
 }
 
+// IE polyfill for Element.closest()
+if (window.Element && !Element.prototype.closest) {
+    Element.prototype.closest =
+    function(s) {
+        var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+            i,
+            el = this;
+        do {
+            i = matches.length;
+            while (--i >= 0 && matches.item(i) !== el) {};
+        } while ((i < 0) && (el = el.parentElement));
+        return el;
+    };
+}
+
 pageflow.widgetTypes.register('pageflow_oembed', {
   enhance: function(element) {
     var urls = document.querySelectorAll('.contentText a');
     var embedLinks = Array.from(urls).filter(this.embeddable);
     for (var i = 0, len = embedLinks.length; i < len; i++) {
       this.embed(embedLinks[i]);
-    }
+    };
   },
 
   embeddable: function(link) {
@@ -61,13 +76,20 @@ pageflow.widgetTypes.register('pageflow_oembed', {
   embed: function(link) {
     var xhr = new XMLHttpRequest();
     var token = document.querySelector("meta[name='csrf-token']").content;
-    var data = {oembed: {url: link.getAttribute('href')}};
+    var page = link.closest('.page');
+    var theme = page.classList.contains('invert') ? 'light' : 'dark';
+    var url = link.getAttribute('href');
+    var data = {oembed: {url: url, theme: theme, locale: pageflow.seed.locale}};
     xhr.open("POST", '/oembed/fetch', true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("X-CSRF-Token", token);
     xhr.onload = function() {
       oembed = JSON.parse(this.responseText);
-      link.insertAdjacentHTML('beforebegin', oembed.html);
+      // link.outerHTML = oembed.html;
+      twttr.widgets.createTweet(
+        url.slice(-18),
+        link
+      )
     };
     xhr.send(JSON.stringify(data));
   }
