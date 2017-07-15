@@ -53,8 +53,9 @@ pageflow.widgetTypes.register('pageflow_oembed', {
     }
   },
 
-  embeddable: function(url) {
-    return /https?:\/\/twitter.com\/\w*\/\w*\/\d*/.test(url)
+  embeddable: function(link) {
+    url = link.getAttribute('href');
+    return /https?:\/\/twitter.com\/\w*\/\w*\/\d*/.test(url);
   },
 
   embed: function(link) {
@@ -65,7 +66,8 @@ pageflow.widgetTypes.register('pageflow_oembed', {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("X-CSRF-Token", token);
     xhr.onload = function() {
-      console.log(this.responseText);
+      oembed = JSON.parse(this.responseText);
+      link.insertAdjacentHTML('beforebegin', oembed.html);
     };
     xhr.send(JSON.stringify(data));
   }

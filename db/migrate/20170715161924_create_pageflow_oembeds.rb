@@ -8,14 +8,14 @@ class CreatePageflowOembeds < ActiveRecord::Migration
       t.string :author_name
       t.string :author_url
       t.text :html
-      t.integer :width
-      t.integer :height
+      t.integer :width, limit: 8
+      t.integer :height, limit: 8
       t.string :provider_name
       t.string :provider_url
-      t.integer :cache_age
+      t.integer :cache_age, limit: 8
       t.string :thumbnail_url
-      t.integer :thumbnail_width
-      t.integer :thumbnail_height
+      t.integer :thumbnail_width, limit: 8
+      t.integer :thumbnail_height, limit: 8
       t.index :url, unique: true
       t.timestamps
     end
