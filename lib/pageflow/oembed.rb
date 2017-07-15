@@ -8,5 +8,9 @@ module Pageflow
     def self.widget_type
       WidgetType.new
     end
+
+    def self.plugin
+      Plugin.new
+    end
   end
 end

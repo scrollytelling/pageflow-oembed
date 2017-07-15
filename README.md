@@ -20,7 +20,7 @@ Add it to the Pageflow initializer in the host application:
 ```ruby
 # config/initializer/pageflow.rb
 Pageflow.configure do |config|
-  config.plugin(Pageflow::Oembed::Plugin.new)
+  config.plugin(Pageflow::Oembed.plugin)
 end
 ```
 
@@ -29,6 +29,13 @@ Copy the migrations:
 ```shell
 rake pageflow_oembed:install:migrations
 rake db:migrate SCOPE=pageflow_oembed
+```
+
+Add it to the asset pipeline:
+
+```javascript
+// app/assets/javascript/application.js
+//= require pageflow/oembed
 ```
 
 ## Usage
