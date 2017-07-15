@@ -1,7 +1,11 @@
-require 'pageflow'
+require 'pageflow/plugin'
 
-class Plugin < ::Pageflow::Plugin
-  def configure(config)
-    # Anything that could go in the pageflow iniitializer
+module Pageflow
+  module Oembed
+    class Plugin < ::Pageflow::Plugin
+      def configure(config)
+        config.widget_types.register(Pageflow::Oembed.widget_type, default: true)
+      end
+    end
   end
 end
