@@ -1,4 +1,5 @@
 require "pageflow/oembed/version"
+require "pageflow/oembed/plugin"
 
 module Pageflow
   module Oembed

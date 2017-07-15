@@ -1,8 +1,5 @@
 # Pageflow::Oembed
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pageflow/oembed`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -16,9 +13,23 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+## Configuration
 
-    $ gem install pageflow-oembed
+Add it to the Pageflow initializer in the host application:
+
+```ruby
+# config/initializer/pageflow.rb
+Pageflow.configure do |config|
+  config.plugin(Pageflow::Oembed::Plugin.new)
+end
+```
+
+Copy the migrations:
+
+```shell
+rake pageflow_oembed:install:migrations
+rake db:migrate SCOPE=pageflow_oembed
+```
 
 ## Usage
 
@@ -38,4 +49,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
