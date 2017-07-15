@@ -1,6 +1,6 @@
 class CreatePageflowOembeds < ActiveRecord::Migration
   def change
-    create_table :pageflow_oembeds do |t|
+    create_table :pageflow_oembed_oembeds do |t|
       t.string :type, null: false, default: ''
       t.string :version, null: false, default: ''
       t.string :url, null: false, default: ''

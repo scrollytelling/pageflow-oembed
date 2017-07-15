@@ -1,5 +1,30 @@
 # Pageflow::Oembed
 
+This plugin will search for links in your Pageflow stories, and turn them
+into embedded content when possible. For example, instead of a link to a
+[Tweet URL](https://twitter.com/scrollytelling/status/885128273239396352), people
+reading your story will see the Tweet embedded in the page.
+
+It works using [oEmbed](http://oembed.com), the standard protocol for discovering
+and showing embedded content. The embed-code isn't fetched anew from the provider
+each time for each visitor. We store the result locally.
+
+The best part is that you don't have to do anything out of the ordinaty.
+Continue to add links as normal, using the built-in html editor in Pageflow.
+Your text won't be affected; the link will be present in the editor same as
+before. Only the front-end is affected.
+
+If you don't want the embed, remove the link. In a future release there will
+be a mechanism to deal with this.
+
+We work with a whitelist and will convert only some links.
+
+Currently supported:
+
+* twitter—https://twitter.com/scrollytelling/status/885128273239396352
+
+More providers will follow.
+
 
 ## Installation
 
