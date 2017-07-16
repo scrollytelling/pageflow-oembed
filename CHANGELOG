@@ -1,0 +1,8 @@
+Version 1.0.1—16 July 2017
+
+Bugfix: tweet ID is now correctly parsed from the link.
+
+Version 1.0.0—16 July 2017
+
+Twitter support. Doesn't actually use oEmbed, because the Twitter SDK
+handles everything for us.
