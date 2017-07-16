@@ -2,8 +2,10 @@
 //
 pageflow.widgetTypes.register('pageflow_oembed', {
   enhance: function(element) {
+    var embedLinks = [];
     var urls = document.querySelectorAll('.contentText a');
-    var embedLinks = Array.from(urls).filter(this.embeddable);
+    for(var i = urls.length; i--; embedLinks.unshift(urls[i]));
+
     for (var i = 0, len = embedLinks.length; i < len; i++) {
       if( /twitter/i.test(embedLinks[i].getAttribute('href')) )
         this.embedTwitter(embedLinks[i]);
