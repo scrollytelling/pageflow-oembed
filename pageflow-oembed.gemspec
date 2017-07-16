@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["joost@spacebabies.nl"]
 
   spec.summary       = "Turn links to embeddable content into the actual embedded content itself."
-  spec.description   = "This plugin enhances Pageflow stories with OEmbed functionality. When a link is present in the body text, and its URL is whitelisted, the link is changed into the embedded content. The embedded content is stored on the local server."
+  spec.description   = "This plugin enhances Pageflow stories with OEmbed functionality. When a link is present in the body text, and its URL is whitelisted, the link is changed into the embedded content. The embedded content is stored on the local server. When available and/or better somehow, we also use a provider's JavaScript SDK."
   spec.homepage      = "https://github.com/scrollytelling/pageflow-oembed"
   spec.license       = "MIT"
 
