@@ -13,6 +13,7 @@ class CreatePageflowOembeds < ActiveRecord::Migration
       t.string :provider_name
       t.string :provider_url
       t.integer :cache_age, limit: 8
+      t.datetime :cache_until
       t.string :thumbnail_url
       t.integer :thumbnail_width, limit: 8
       t.integer :thumbnail_height, limit: 8

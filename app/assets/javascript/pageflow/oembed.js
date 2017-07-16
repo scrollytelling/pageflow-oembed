@@ -64,7 +64,8 @@ pageflow.widgetTypes.register('pageflow_oembed', {
     var urls = document.querySelectorAll('.contentText a');
     var embedLinks = Array.from(urls).filter(this.embeddable);
     for (var i = 0, len = embedLinks.length; i < len; i++) {
-      this.embed(embedLinks[i]);
+      if( /twitter/i.test(embedLinks[i].getAttribute('href')) )
+        this.embedTwitter(embedLinks[i]);
     };
   },
 
@@ -73,24 +74,41 @@ pageflow.widgetTypes.register('pageflow_oembed', {
     return /https?:\/\/twitter.com\/\w*\/\w*\/\d*/.test(url);
   },
 
-  embed: function(link) {
+  token: function() {
+    return document.querySelector("meta[name='csrf-token']").content;
+  },
+
+  page: function(link) {
+    return link.closest('.page');
+  },
+
+  embedSpotify: function(link) {
     var xhr = new XMLHttpRequest();
-    var token = document.querySelector("meta[name='csrf-token']").content;
-    var page = link.closest('.page');
-    var theme = page.classList.contains('invert') ? 'light' : 'dark';
     var url = link.getAttribute('href');
-    var data = {oembed: {url: url, theme: theme, locale: pageflow.seed.locale}};
+    var data = {oembed: {url: url, locale: pageflow.seed.locale}};
     xhr.open("POST", '/oembed/fetch', true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("X-CSRF-Token", token);
+    xhr.setRequestHeader("X-CSRF-Token", this.token());
     xhr.onload = function() {
       oembed = JSON.parse(this.responseText);
-      // link.outerHTML = oembed.html;
-      twttr.widgets.createTweet(
-        url.slice(-18),
-        link
-      )
+      link.outerHTML = oembed.html;
     };
     xhr.send(JSON.stringify(data));
+  },
+
+  embedTwitter: function(link) {
+    var url = link.getAttribute('href');
+    var tweetId = url.slice(-18);
+    var theme = this.page(link).classList.contains('invert') ? 'light' : 'dark';
+
+    link.insertAdjacentHTML('beforebegin', '<span id="tweet-'+tweetId+'"></span>')
+
+    var options = {omit_script: true, related: 'scrollytelling', lang: pageflow.seed.locale, theme: theme, dnt: 'true'};
+    twttr.widgets.createTweet(
+      tweetId,
+      document.getElementById('tweet-'+tweetId),
+      options
+    );
+    link.style.display = 'none';
   }
 });

@@ -5,25 +5,39 @@ into embedded content when possible. For example, instead of a link to a
 [Tweet URL](https://twitter.com/scrollytelling/status/885128273239396352), people
 reading your story will see the Tweet embedded in the page.
 
-It works using [oEmbed](http://oembed.com), the standard protocol for discovering
-and showing embedded content. The embed-code isn't fetched anew from the provider
-each time for each visitor. We store the result locally.
+It usually works using [oEmbed](http://oembed.com), the standard protocol for discovering
+and showing embedded content. Although sometimes we use a JavaScript SDK, since it
+gives better results. When we do use oEmbed, the embed-code is cached in
+the database. And when we say JavaScript, we mean it! jQuery is not used at all.
+This plugin contains two polyfills to get IE on board. And if you are using an
+ancient browser, well, that's your choice.
 
-The best part is that you don't have to do anything out of the ordinaty.
-Continue to add links as normal, using the built-in html editor in Pageflow.
-Your text won't be affected; the link will be present in the editor same as
-before. Only the front-end is affected.
+The best aspect about this plugin is for editors working with Pageflow. You
+don't have to do anything out of the ordinary. Continue to add links as normal,
+using the built-in html editor in Pageflow. Your hand-creafted, artisanal words
+are not affected by our code. The link will be visible to you as always. It's just
+that on the front end, the link is replaced by the embedded content.
 
-If you don't want the embed, remove the link. In a future release there will
+If you don't want the embed, remove the link. In a future release there might
 be a mechanism to deal with this.
 
 We work with a whitelist and will convert only some links.
 
 Currently supported:
 
-* twitter—https://twitter.com/scrollytelling/status/885128273239396352
+* twitter: https://twitter.com/scrollytelling/status/885128273239396352
+
+Note that the URL you use must look exactly like the ones above.
 
 More providers will follow.
+
+## Scrollytelling. What's that now?
+
+We are [Scrollytelling](https://www.scrollytelling.io/). We enable online
+stories. we host multimedia content for national media. We run a custom version
+of the awesome [Pageflow](https://github.com/codevise/pageflow) storytelling
+tool. We continously give back to the community and we hope that you'll
+enjoy this plugin too.
 
 
 ## Installation

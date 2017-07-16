@@ -32,7 +32,10 @@ module Pageflow
           theme: params[:theme] || 'dark',
           dnt: 'true'
         }
-        response.body
+
+        oembed = response.body
+        oembed[:cache_until] = oembed[:cache_age].seconds.from_now
+        oembed
       end
     end
   end
