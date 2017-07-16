@@ -7,14 +7,12 @@ pageflow.widgetTypes.register('pageflow_oembed', {
     for(var i = urls.length; i--; embedLinks.unshift(urls[i]));
 
     for (var i = 0, len = embedLinks.length; i < len; i++) {
-      if( /twitter/i.test(embedLinks[i].getAttribute('href')) )
-        this.embedTwitter(embedLinks[i]);
+      var url = embedLinks[i].getAttribute('href');
+      if( /twitter/i.test(url) )
+        this.embedTwitter(embedLinks[i], url);
+      else if( /spotify/i.test(url) )
+        this.embedSpotify(embedLinks[i], url);
     };
-  },
-
-  embeddable: function(link) {
-    url = link.getAttribute('href');
-    return /https?:\/\/twitter.com\/\w*\/\w*\/\d*/.test(url);
   },
 
   token: function() {
@@ -25,27 +23,26 @@ pageflow.widgetTypes.register('pageflow_oembed', {
     return link.closest('.page');
   },
 
-  embedSpotify: function(link) {
+  embedSpotify: function(anchor, url) {
     var xhr = new XMLHttpRequest();
-    var url = link.getAttribute('href');
-    var data = {oembed: {url: url, locale: pageflow.seed.locale}};
+    var data = {oembed: {url: url}};
     xhr.open("POST", '/oembed/fetch', true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("X-CSRF-Token", this.token());
     xhr.onload = function() {
       oembed = JSON.parse(this.responseText);
-      link.outerHTML = oembed.html;
+      anchor.insertAdjacentHTML('afterend', oembed.html);
+      anchor.style.display = 'none';
     };
     xhr.send(JSON.stringify(data));
   },
 
-  embedTwitter: function(link) {
-    var url = link.getAttribute('href');
+  embedTwitter: function(anchor, url) {
     var match = /(\d+)$/.exec(url);
     tweetId = match[0];
-    var theme = this.page(link).classList.contains('invert') ? 'light' : 'dark';
+    var theme = this.page(anchor).classList.contains('invert') ? 'light' : 'dark';
 
-    link.insertAdjacentHTML('beforebegin', '<span id="tweet-'+tweetId+'"></span>')
+    anchor.insertAdjacentHTML('beforebegin', '<span id="tweet-'+tweetId+'"></span>')
 
     var options = {omit_script: true, related: 'scrollytelling', lang: pageflow.seed.locale, theme: theme, dnt: 'true'};
     twttr.widgets.createTweet(
@@ -53,6 +50,6 @@ pageflow.widgetTypes.register('pageflow_oembed', {
       document.getElementById('tweet-'+tweetId),
       options
     );
-    link.style.display = 'none';
+    anchor.style.display = 'none';
   }
 });
