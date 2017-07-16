@@ -91,6 +91,16 @@ Add it to the asset pipeline:
 //= require pageflow/oembed
 ```
 
+Finally, mount it in `routes.rb`:
+
+```ruby
+Rails.application.routes.draw do
+  ...
+  mount Pageflow::Oembed::Engine, at: '/oembed'
+  ...
+end
+```
+
 ## Usage
 
 In the Pageflow editor, insert a plain old link into the content text. Voila!
