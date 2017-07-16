@@ -1,3 +1,12 @@
+Version 1.1.0—16 July 2017
+
+Bugfix: NodeList to Array now considers empty Nodelist. Also, speed.
+
+Added Spotify support. Uses Oembed like the makers intended, damnit!
+
+* spotify, single track: https://open.spotify.com/track/298gs9ATwr2rD9tGYJKlQR
+* spotify, artist: https://open.spotify.com/artist/0IIPgITtEO4JJfipw57KGv
+
 Version 1.0.1—16 July 2017
 
 Bugfix: tweet ID is now correctly parsed from the link.
@@ -5,4 +14,6 @@ Bugfix: tweet ID is now correctly parsed from the link.
 Version 1.0.0—16 July 2017
 
 Twitter support. Doesn't actually use oEmbed, because the Twitter SDK
-handles everything for us.
+handles everything for us. Oh well.
+
+* twitter, single tweet: https://twitter.com/scrollytelling/status/885128273239396352

@@ -5,6 +5,8 @@ into embedded content when possible. For example, instead of a link to a
 [Tweet URL](https://twitter.com/scrollytelling/status/885128273239396352), people
 reading your story will see the Tweet embedded in the page.
 
+[Read the introduction on Scrollytelling](https://app.scrollytelling.io/embed-a-tweet)
+
 It usually works using [oEmbed](http://oembed.com), the standard protocol for discovering
 and showing embedded content. Although sometimes we use a JavaScript SDK, since it
 gives better results. When we do use oEmbed, the embed-code is cached in
@@ -25,16 +27,20 @@ We work with a whitelist and will convert only some links.
 
 Currently supported:
 
-* twitter: https://twitter.com/scrollytelling/status/885128273239396352
+* twitter, single tweet: https://twitter.com/scrollytelling/status/885128273239396352
+* spotify, single track: https://open.spotify.com/track/298gs9ATwr2rD9tGYJKlQR
+* spotify, artist: https://open.spotify.com/artist/0IIPgITtEO4JJfipw57KGv
 
 Note that the URL you use must look exactly like the ones above.
 
 More providers will follow.
 
-### Just use JavaScript
+### Just uses JavaScript
 
-jQuery is not used at all. This plugin contains two polyfills to get IE on board.
-And if you are using an ancient browser, well, that's your choice.
+No jQuery was created during the development of this plugin. It does mean we
+have two polyfills to get IE on board. These don't get loaded if your browser
+is up to date. And if you are using a really ancient browser, well, that's
+your choice.
 
 ### Heads up: social scripts will be included in the page
 
