@@ -39,7 +39,8 @@ pageflow.widgetTypes.register('pageflow_oembed', {
 
   embedTwitter: function(link) {
     var url = link.getAttribute('href');
-    var tweetId = url.slice(-18);
+    var match = /(\d+)$/.exec(url);
+    tweetId = match[0];
     var theme = this.page(link).classList.contains('invert') ? 'light' : 'dark';
 
     link.insertAdjacentHTML('beforebegin', '<span id="tweet-'+tweetId+'"></span>')
