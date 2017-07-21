@@ -1,4 +1,4 @@
 nl:
   pageflow:
     pageflow_oembed:
-      widget_type_name: "When available, replace plain links with embedded content."
+      widget_type_name: Vervang links door embeds, indien beschikbaar
