@@ -30,6 +30,7 @@ Currently supported:
 * twitter, single tweet: https://twitter.com/scrollytelling/status/885128273239396352
 * spotify, single track: https://open.spotify.com/track/298gs9ATwr2rD9tGYJKlQR
 * spotify, artist: https://open.spotify.com/artist/0IIPgITtEO4JJfipw57KGv
+* facebook, post: https://www.facebook.com/20531316728/posts/10154009990506729/
 
 Note that the URL you use must look exactly like the ones above.
 
