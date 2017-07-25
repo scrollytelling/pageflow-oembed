@@ -1,3 +1,7 @@
+Version 1.1.1—25 July 2017
+
+Bugfix: make the URL test more strict. Otherwise non-embeddable links were found.
+
 Version 1.1.0—16 July 2017
 
 Bugfix: NodeList to Array now considers empty Nodelist. Also, speed.
