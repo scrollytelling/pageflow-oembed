@@ -4,6 +4,10 @@ require 'faraday_middleware'
 module Pageflow
   module Oembed
     module Providers
+      # Supported URLs:
+      #
+      #   open.spotify.com/track/298gs9ATwr2rD9tGYJKlQR
+      #   open.spotify.com/artist/0IIPgITtEO4JJfipw57KGv
       class Spotify
         def initialize(url, params)
           @url = url

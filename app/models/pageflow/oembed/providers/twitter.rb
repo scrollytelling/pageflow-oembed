@@ -4,6 +4,9 @@ require 'faraday_middleware'
 module Pageflow
   module Oembed
     module Providers
+      # Supported URLs:
+      #
+      #   twitter.com/scrollytelling/status/886503890287546368
       class Twitter
         def initialize(url, params)
           @url = url

@@ -8,9 +8,11 @@ pageflow.widgetTypes.register('pageflow_oembed', {
 
     for (var i = 0, len = embedLinks.length; i < len; i++) {
       var url = embedLinks[i].getAttribute('href');
-      if( /twitter/i.test(url) )
+      if( /twitter\.com\/\w*\/status\/\d*/i.test(url) )
         this.embedTwitter(embedLinks[i], url);
-      else if( /spotify/i.test(url) )
+      else if( /open\.spotify\.com\/artist\/\w*/i.test(url) )
+        this.embedSpotify(embedLinks[i], url);
+      else if( /open\.spotify\.com\/track\/\w*/i.test(url) )
         this.embedSpotify(embedLinks[i], url);
     };
   },
