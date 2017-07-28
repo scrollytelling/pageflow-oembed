@@ -1,3 +1,11 @@
+Version 1.2.0—28 July 2017
+
+Added Facebook single post support. Uses the Facebook JS SDK. Spy on all the things!
+
+* facebook, post: https://www.facebook.com/20531316728/posts/10154009990506729/
+
+Will add Facebook Video in a future release.
+
 Version 1.1.1—25 July 2017
 
 Bugfix: make the URL test more strict. Otherwise non-embeddable links were found.
