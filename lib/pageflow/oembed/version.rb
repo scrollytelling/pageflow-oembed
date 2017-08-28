@@ -1,5 +1,5 @@
 module Pageflow
   module Oembed
-    VERSION = "1.2.1"
+    VERSION = "12.0.0.pre"
   end
 end
