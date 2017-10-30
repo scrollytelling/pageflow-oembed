@@ -1,6 +1,6 @@
 # Pageflow::Oembed
 
-This plugin will search for links in your Pageflow stories, and turn them
+This plugin will search for links in your Pageflow 0.11 stories, and turn them
 into embedded content when possible. For example, instead of a link to a
 [Tweet URL](https://twitter.com/scrollytelling/status/885128273239396352), people
 reading your story will see the Tweet embedded in the page.
@@ -22,6 +22,12 @@ that on the front end, the link is replaced by embedded content.
 
 If you don't want the embed, remove the link. In a future release there might
 be a mechanism to deal with this.
+
+## Not for Pageflow 12
+
+This plugin is fundamentally incompatible with Pageflow 12. :'(
+
+Codevise and Scrollytelling are currently investigating the best way to bring it over!
 
 ### 🖤 Heads up: contains ~~evil spyware~~ social scripts 👀
 
