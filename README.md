@@ -118,6 +118,32 @@ In the Pageflow editor, insert a plain old link into the content text. Voila!
 
 🌟 [Read the introduction on Scrollytelling](https://app.scrollytelling.io/embed-a-tweet) 🌟
 
+## Uninstallation
+
+Remove `pageflow-oembed` from Gemfile and run `bundle install`.
+
+Generate a new migration to drop the table:
+
+```shell
+$ rails generate migration drop_pageflow_oembeds
+```
+
+Which contains:
+
+```ruby
+class DropPageflowOembeds < ActiveRecord::Migration
+  def up
+    drop_table :pageflow_oembed_oembeds
+  end
+
+  def down
+    raise ActiveRecord::IrreversibleMigration
+  end
+end
+```
+
+and then run `rake db:migrate` and commit everything.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
