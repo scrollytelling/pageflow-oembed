@@ -150,6 +150,15 @@ end
 
 and then run `rake db:migrate` and commit everything.
 
+Lastly, remove this widget from all entries. Quickest and most thourough:
+
+``` ruby
+Pageflow::Widget.where(role: "oembed", type_name: "pageflow_oembed").destroy_all
+```
+
+If you don't to this, editor functionality of stories with this widget will
+be degraded.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
